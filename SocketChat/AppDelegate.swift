@@ -3,7 +3,7 @@
 //  SocketChat
 //
 //  Created by Nithin Reddy Gaddam on 3/22/16.
-//  Copyright © 2016 AppCoda. All rights reserved.
+//  Copyright © 2016 Nithin Reddy Gaddam. All rights reserved.
 //
 
 import UIKit

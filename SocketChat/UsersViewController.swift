@@ -3,48 +3,65 @@
 //  SocketChat
 //
 //  Created by Nithin Reddy Gaddam on 3/22/16.
-//  Copyright © 2016 AppCoda. All rights reserved.
+//  Copyright © 2016 Nithin Reddy Gaddam. All rights reserved.
 //
 
 import UIKit
+import HealthKit
 
-class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    @IBOutlet weak var tblUserList: UITableView!
-    
-    
-    var users = [[String: AnyObject]]()
-    
-    var nickname: String!
-    
-    var configurationOK = false
+class UsersViewController: UIViewController, UITableViewDelegate {
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        let heartRateType = HKQuantityType.quantityTypeForIdentifier(HKQuantityTypeIdentifierHeartRate)!
+        
+        if (HKHealthStore.isHealthDataAvailable()){
+            
+            self.healthStore.requestAuthorizationToShareTypes(nil, readTypes:[heartRateType], completion:{(success, error) in
+                let sortByTime = NSSortDescriptor(key:HKSampleSortIdentifierEndDate, ascending:false)
+                let timeFormatter = NSDateFormatter()
+                timeFormatter.dateFormat = "hh:mm:ss"
+                
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "MM/dd/YYYY"
+                
+                let query = HKSampleQuery(sampleType:heartRateType, predicate:nil, limit:0, sortDescriptors:[sortByTime], resultsHandler:{(query, results, error) in
+                    guard let results = results else { return }
+                    for quantitySample in results {
+                        let quantity = (quantitySample as! HKQuantitySample).quantity
+                        let heartRateUnit = HKUnit(fromString: "count/min")
+                        
+                        
+                        print("\(timeFormatter.stringFromDate(quantitySample.startDate)),\(dateFormatter.stringFromDate(quantitySample.startDate)),\(quantity.doubleValueForUnit(heartRateUnit))")
+                        
+                        let time = timeFormatter.stringFromDate(quantitySample.startDate)
+                        
+                        let date = dateFormatter.stringFromDate(quantitySample.startDate)
+                        
+                        let hr = quantity.doubleValueForUnit(heartRateUnit)
+                        
+                        SocketIOManager.sharedInstance.sendHeartRate( time, date: date, hr: hr)
+                    }
+                    
+                })
+                self.healthStore.executeQuery(query)
+            })
+        }
     }
+
 
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        if !configurationOK {
-            configureNavigationBar()
-            configureTableView()
-            configurationOK = true
-        }
         
     }
     
     //to initialise the UI properly
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        if nickname == nil {
-            askForNickname()
-        }
+     
     }
     
     
@@ -53,34 +70,21 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Dispose of any resources that can be recreated.
     }
     
-
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let identifier = segue.identifier {
-            if identifier == "idSegueJoinChat" {
-                let chatViewController = segue.destinationViewController as! ChatViewController
-                chatViewController.nickname = nickname
-            }
-        }
-    }
-
     
-    // MARK: IBAction Methods
-    // to exit the chat 
-    @IBAction func exitChat(sender: AnyObject) {
-        SocketIOManager.sharedInstance.exitChatWithNickname(nickname) { () -> Void in
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.nickname = nil
-                self.users.removeAll()
-                self.tblUserList.hidden = true
-                self.askForNickname()
-            })
-        }
-    }
+    let healthStore = HKHealthStore()
+    
+    
 
+
+//    // MARK: - Navigation
+//
+//    // In a storyboard-based application, you will often want to do a little preparation before navigation
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+//        if let identifier = segue.identifier {
+//            if identifier == "idSegueJoinChat" {
+//                            }
+//        }
+//    }
     
     
     // MARK: Custom Methods
@@ -90,71 +94,7 @@ class UsersViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     
-    func configureTableView() {
-        tblUserList.delegate = self
-        tblUserList.dataSource = self
-        tblUserList.registerNib(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "idCellUser")
-        tblUserList.hidden = true
-        tblUserList.tableFooterView = UIView(frame: CGRectZero)
-    }
-    
-    
-    // MARK: UITableView Delegate and Datasource methods
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
-    }
-    
-    //displays user's information
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("idCellUser", forIndexPath: indexPath) as! UserCell
-        
-        cell.textLabel?.text = users[indexPath.row]["nickname"] as? String
-        cell.detailTextLabel?.text = (users[indexPath.row]["isConnected"] as! Bool) ? "Online" : "Offline"
-        cell.detailTextLabel?.textColor = (users[indexPath.row]["isConnected"] as! Bool) ? UIColor.greenColor() : UIColor.redColor()
-        
-        
-        return cell
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44.0
-    }
-    
-    func askForNickname() {
-        let alertController = UIAlertController(title: "SocketChat", message: "Please enter a nickname:", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        alertController.addTextFieldWithConfigurationHandler(nil)
-        
-        //checks if the user entered a nickname or not
-        let OKAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default) { (action) -> Void in
-            let textfield = alertController.textFields![0]
-            if textfield.text?.characters.count == 0 {
-                self.askForNickname()
-            }
-            else {
-                self.nickname = textfield.text
-                
-                SocketIOManager.sharedInstance.connectToServerWithNickname(self.nickname, completionHandler: { (userList) -> Void in
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        if userList != nil {
-                            self.users = userList
-                            self.tblUserList.reloadData()
-                            self.tblUserList.hidden = false
-                        }
-                    })
-                })
-            }
-        }
-        
-        alertController.addAction(OKAction)
-        presentViewController(alertController, animated: true, completion: nil)
-    }
+   
     
     
 }

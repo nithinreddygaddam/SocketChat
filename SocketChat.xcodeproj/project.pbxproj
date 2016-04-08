@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		595640021CB1EB4100007574 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 595640011CB1EB4100007574 /* HealthKit.framework */; };
 		59A70ECB1CAF390900B94DCA /* SocketIOManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A70ECA1CAF390900B94DCA /* SocketIOManager.swift */; };
 		59A70F0D1CAF3D2100B94DCA /* SocketAckEmitter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A70EF81CAF3D2100B94DCA /* SocketAckEmitter.swift */; };
 		59A70F0E1CAF3D2100B94DCA /* SocketAckManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A70EF91CAF3D2100B94DCA /* SocketAckManager.swift */; };
@@ -34,15 +35,11 @@
 		C075D7241C5E0E81009F9044 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C075D7231C5E0E81009F9044 /* Assets.xcassets */; };
 		C075D7271C5E0E81009F9044 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C075D7251C5E0E81009F9044 /* LaunchScreen.storyboard */; };
 		C075D7301C5E0EB1009F9044 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075D72F1C5E0EB1009F9044 /* UsersViewController.swift */; };
-		C075D7321C5E0EBB009F9044 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075D7311C5E0EBB009F9044 /* ChatViewController.swift */; };
-		C075D7351C5E0EDC009F9044 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C075D7341C5E0EDC009F9044 /* UserCell.xib */; };
-		C075D7371C5E0EED009F9044 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075D7361C5E0EED009F9044 /* UserCell.swift */; };
-		C075D7391C5E0EFC009F9044 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C075D7381C5E0EFC009F9044 /* ChatCell.xib */; };
-		C075D73B1C5E0F10009F9044 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075D73A1C5E0F10009F9044 /* ChatCell.swift */; };
-		C075D73D1C5E0F4E009F9044 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C075D73C1C5E0F4E009F9044 /* BaseCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		595640011CB1EB4100007574 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HealthKit.framework; sourceTree = "<group>"; };
+		595640051CB1EC1600007574 /* SocketChat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SocketChat.entitlements; sourceTree = "<group>"; };
 		59A70ECA1CAF390900B94DCA /* SocketIOManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketIOManager.swift; sourceTree = "<group>"; };
 		59A70EF81CAF3D2100B94DCA /* SocketAckEmitter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckEmitter.swift; sourceTree = "<group>"; };
 		59A70EF91CAF3D2100B94DCA /* SocketAckManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketAckManager.swift; sourceTree = "<group>"; };
@@ -72,12 +69,6 @@
 		C075D7261C5E0E81009F9044 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C075D7281C5E0E81009F9044 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C075D72F1C5E0EB1009F9044 /* UsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
-		C075D7311C5E0EBB009F9044 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
-		C075D7341C5E0EDC009F9044 /* UserCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
-		C075D7361C5E0EED009F9044 /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
-		C075D7381C5E0EFC009F9044 /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatCell.xib; sourceTree = "<group>"; };
-		C075D73A1C5E0F10009F9044 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
-		C075D73C1C5E0F4E009F9044 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				595640021CB1EB4100007574 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,14 +131,15 @@
 		C075D71B1C5E0E81009F9044 /* SocketChat */ = {
 			isa = PBXGroup;
 			children = (
+				595640051CB1EC1600007574 /* SocketChat.entitlements */,
 				59A70ECA1CAF390900B94DCA /* SocketIOManager.swift */,
-				C075D7331C5E0EC9009F9044 /* Custom Cells */,
 				C075D72E1C5E0E96009F9044 /* View Controllers */,
 				C075D71C1C5E0E81009F9044 /* AppDelegate.swift */,
 				C075D7201C5E0E81009F9044 /* Main.storyboard */,
 				C075D7231C5E0E81009F9044 /* Assets.xcassets */,
 				C075D7251C5E0E81009F9044 /* LaunchScreen.storyboard */,
 				C075D7281C5E0E81009F9044 /* Info.plist */,
+				595640011CB1EB4100007574 /* HealthKit.framework */,
 			);
 			path = SocketChat;
 			sourceTree = "<group>";
@@ -155,21 +148,8 @@
 			isa = PBXGroup;
 			children = (
 				C075D72F1C5E0EB1009F9044 /* UsersViewController.swift */,
-				C075D7311C5E0EBB009F9044 /* ChatViewController.swift */,
 			);
 			name = "View Controllers";
-			sourceTree = "<group>";
-		};
-		C075D7331C5E0EC9009F9044 /* Custom Cells */ = {
-			isa = PBXGroup;
-			children = (
-				C075D73C1C5E0F4E009F9044 /* BaseCell.swift */,
-				C075D7361C5E0EED009F9044 /* UserCell.swift */,
-				C075D7341C5E0EDC009F9044 /* UserCell.xib */,
-				C075D73A1C5E0F10009F9044 /* ChatCell.swift */,
-				C075D7381C5E0EFC009F9044 /* ChatCell.xib */,
-			);
-			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +185,11 @@
 					C075D7181C5E0E81009F9044 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 4Z8GLS9K7U;
+						SystemCapabilities = {
+							com.apple.HealthKit = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -231,9 +216,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C075D7351C5E0EDC009F9044 /* UserCell.xib in Resources */,
 				C075D7271C5E0E81009F9044 /* LaunchScreen.storyboard in Resources */,
-				C075D7391C5E0EFC009F9044 /* ChatCell.xib in Resources */,
 				C075D7241C5E0E81009F9044 /* Assets.xcassets in Resources */,
 				C075D7221C5E0E81009F9044 /* Main.storyboard in Resources */,
 			);
@@ -250,9 +233,7 @@
 				59A70F111CAF3D2100B94DCA /* SocketEngine.swift in Sources */,
 				59A70F1D1CAF3D2100B94DCA /* SocketParsable.swift in Sources */,
 				59A70F0F1CAF3D2100B94DCA /* SocketAnyEvent.swift in Sources */,
-				C075D7371C5E0EED009F9044 /* UserCell.swift in Sources */,
 				C075D7301C5E0EB1009F9044 /* UsersViewController.swift in Sources */,
-				C075D7321C5E0EBB009F9044 /* ChatViewController.swift in Sources */,
 				59A70F0E1CAF3D2100B94DCA /* SocketAckManager.swift in Sources */,
 				59A70F141CAF3D2100B94DCA /* SocketEnginePollable.swift in Sources */,
 				59A70F101CAF3D2100B94DCA /* SocketClientSpec.swift in Sources */,
@@ -260,7 +241,6 @@
 				59A70F201CAF3D2100B94DCA /* SwiftRegex.swift in Sources */,
 				59A70F0D1CAF3D2100B94DCA /* SocketAckEmitter.swift in Sources */,
 				59A70F211CAF3D2100B94DCA /* WebSocket.swift in Sources */,
-				C075D73B1C5E0F10009F9044 /* ChatCell.swift in Sources */,
 				59A70F171CAF3D2100B94DCA /* SocketEventHandler.swift in Sources */,
 				59A70F1C1CAF3D2100B94DCA /* SocketPacket.swift in Sources */,
 				59A70F151CAF3D2100B94DCA /* SocketEngineSpec.swift in Sources */,
@@ -271,7 +251,6 @@
 				59A70F181CAF3D2100B94DCA /* SocketIOClient.swift in Sources */,
 				59A70F1E1CAF3D2100B94DCA /* SocketStringReader.swift in Sources */,
 				59A70F1F1CAF3D2100B94DCA /* SocketTypes.swift in Sources */,
-				C075D73D1C5E0F4E009F9044 /* BaseCell.swift in Sources */,
 				59A70F1B1CAF3D2100B94DCA /* SocketLogger.swift in Sources */,
 				C075D71D1C5E0E81009F9044 /* AppDelegate.swift in Sources */,
 			);
@@ -385,9 +364,13 @@
 		C075D72C1C5E0E81009F9044 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SocketChat/SocketChat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SocketChat",
+				);
 				INFOPLIST_FILE = SocketChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -400,9 +383,13 @@
 		C075D72D1C5E0E81009F9044 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SocketChat/SocketChat.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SocketChat",
+				);
 				INFOPLIST_FILE = SocketChat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
